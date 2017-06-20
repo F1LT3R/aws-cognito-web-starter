@@ -1,0 +1,34 @@
+body {
+	padding: 10px;
+}
+
+form {
+	vertical-align: top;
+	border: 1px solid #ccc;
+	padding: 10px;
+	display: inline-block;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+form > div {
+	display: block;
+	margin-bottom: 10px;
+}
+
+form > div > label {
+	display: inline-block;
+	width: 100px;
+}
+
+input[type="submit"] {
+	float: right;
+	font-size: 16px;
+}
+
+.errors {
+	clear: both;
+	display: block;
+	color: red;
+	width: 200px;
+}

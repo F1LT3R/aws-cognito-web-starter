@@ -1,10 +1,11 @@
 {
   "name": "aws-cognito-nodejs-starter",
   "version": "1.0.0",
+  "private": true,
   "description": "a simple starter project for aws-cognito in nodejs",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,9 @@
   "bugs": {
     "url": "https://github.com/F1LT3R/aws-cognito-nodejs-starter/issues"
   },
-  "homepage": "https://github.com/F1LT3R/aws-cognito-nodejs-starter#readme"
+  "homepage": "https://github.com/F1LT3R/aws-cognito-nodejs-starter#readme",
+  "dependencies": {
+    "amazon-cognito-identity-js": "^1.19.0",
+    "aws-sdk": "^2.73.0"
+  }
 }

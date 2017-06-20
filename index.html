@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="node_modules/amazon-cognito-identity-js/dist/aws-cognito-sdk.min.js"></script>
+    <script src="node_modules/amazon-cognito-identity-js/dist/amazon-cognito-identity.min.js"></script>
+    <!-- optional: only if you use other AWS services -->
+    <script src="node_modules/aws-sdk/dist/aws-sdk.min.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+	<h1>AWS Cognito Starter</h1>
+
+	<form name="configForm">
+		<div>
+			<label for="UserPoolId">UserPoolId</label>
+			<input type="text" placeholder="UserPoolId" name="UserPoolId">
+		</div>
+
+		<div>
+			<label for="ClientId">ClientId</label>
+			<input type="text" placeholder="ClientId" name="ClientId">
+		</div>
+	</form>
+
+	<form name="signupForm">
+		<h2>Signup</h2>
+
+		<div>
+			<label for="name">Name</label>
+			<input type="text" placeholder="Name" name="name">
+		</div>
+
+		<div>
+			<label for="password">Password</label>
+			<input type="password" placeholder="Password" name="password">
+		</div>
+
+		<div>
+			<label for="email">Email</label>
+			<input type="email" placeholder="Email" name="email">
+		</div>
+
+		<div>
+			<label for="phone_number">Phone Number</label>
+			<input type="tel" placeholder="Phone Number" name="phone_number">
+		</div>
+
+		<div>
+			<label for="gender" class="label">Gender</label>
+			<group>
+				<input type="radio" name="gender" value="male">
+				<label for="male">Male</label>
+				<input type="radio" name="gender" value="female">
+				<label for="female">Female</label>
+			</group>
+		</div>
+
+		<div>
+			<label for="birthdate">Birth Date</label>
+			<input type="date" name="birthdate" placeholder="Birth Date">
+		</div>
+
+		<input type="submit" value="Submit">
+
+		<div class="errors"></div>
+	</form>
+
+<!-- 	<form>
+		<h2>Login</h2>
+
+		<label for="name">Name</label>
+		<input type="text" placeholder="Name" name="name">
+
+		<label for="email">Email</label>
+		<input type="email" placeholder="Email" name="email">
+
+		<label for="phone_number">Birth Date</label>
+		<input type="tel" placeholder="Phone Number" name="phone_number">
+
+		<label for="birthdate">Birth Date</label>
+		<input type="date" name="birthdate" placeholder="Birth Date">
+
+		<input type="submit" value="Submit">
+	</form>
+ -->
+
+	<script src="index.js"></script>
+</body>
+</html>
