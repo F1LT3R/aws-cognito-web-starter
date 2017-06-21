@@ -17,8 +17,9 @@ form > div {
 }
 
 form > div > label {
-	display: inline-block;
-	width: 100px;
+	display: block;
+	// display: inline-block;
+	// width: 100px;
 }
 
 .submit {

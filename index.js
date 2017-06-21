@@ -26,8 +26,8 @@ const setUserPool = () => {
 	sessionStorage.ClientId = ClientId
 
 	const poolData = {
-	    UserPoolId,
-	    ClientId
+		UserPoolId,
+		ClientId
 	}
 
 	userPool = new AWSCognito
@@ -176,12 +176,12 @@ const confirmRegistration = event => {
 	console.log(email)
 	console.log(code)
 
-	 var userData = {
+	const userData = {
         Username : email,
         Pool: userPool
     }
 
-    var cognitoUser = new AWSCognito
+    const cognitoUser = new AWSCognito
     	.CognitoIdentityServiceProvider
     	.CognitoUser(userData)
 
@@ -204,5 +204,80 @@ const confirmRegistration = event => {
 	return false
 }
 
-
 confirmRegistrationForm.onsubmit = confirmRegistration
+
+// Authenticate User (login)
+
+const authenticateUser = event =>  {
+	event.preventDefault()
+
+	if (!userPoolIsConfigured()) {
+		userPoolWarning()
+	}
+
+	const email = authenticateUserForm['email'].value
+	const password = authenticateUserForm['password'].value
+	const identityPoolId = configForm['UserPoolId'].value
+	const clientId = configForm['ClientId'].value
+
+	console.log(email)
+	console.log(password)
+
+    const authenticationData = {
+        Username : email,
+        Password : password,
+    }
+
+    const authenticationDetails = new AWSCognito
+		.CognitoIdentityServiceProvider
+		.AuthenticationDetails(authenticationData)
+
+	const poolData = {
+        UserPoolId: identityPoolId,
+        ClientId: clientId
+    }
+
+    const userPool = new AWSCognito
+    	.CognitoIdentityServiceProvider
+    	.CognitoUserPool(poolData)
+
+    const userData = {
+        Username: email,
+        Pool: userPool
+    }
+
+	const cognitoUser = new AWSCognito
+		.CognitoIdentityServiceProvider
+		.CognitoUser(userData)
+
+    const errors = confirmRegistrationForm
+    	.getElementsByClassName('errors')[0]
+    const success =confirmRegistrationForm
+    	.getElementsByClassName('success')[0]
+
+    cognitoUser.authenticateUser(authenticationDetails, {
+        onSuccess: result => {
+
+            success.innerHTML = ('access token + ' + result.getAccessToken().getJwtToken())
+
+            // POTENTIAL: Region needs to be set if not already set previously elsewhere.
+            // AWS.config.region = '<region>';
+
+            AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+                IdentityPoolId: identityPoolId,
+                Logins : {
+                    'cognito-idp.us-east-1.amazonaws.com/us-east-1_gplidiDbz': result.getIdToken().getJwtToken()
+                }
+            })
+
+            // Instantiate aws sdk service objects now that the credentials have been updated.
+            // example: var s3 = new AWS.S3()
+        },
+
+        onFailure: err => {
+            alert(err)
+        }
+    })
+}
+
+authenticateUserForm.onsubmit = authenticateUser

@@ -32,6 +32,11 @@
 		<h2>Sign Up</h2>
 
 		<div>
+			<label for="email">Email (username alias)</label>
+			<input type="email" placeholder="Email" name="email">
+		</div>
+
+		<div>
 			<label for="name">Name</label>
 			<input type="text" placeholder="Name" name="name"
 				value="John Smith">
@@ -41,11 +46,6 @@
 			<label for="password">Password</label>
 			<input type="password" placeholder="Password" name="password"
 				value="Testing123!"">
-		</div>
-
-		<div>
-			<label for="email">Email</label>
-			<input type="email" placeholder="Email" name="email">
 		</div>
 
 		<div>
@@ -81,12 +81,11 @@
 		</div>
 	</form>
 
-
 	<form name="confirmRegistrationForm">
 		<h2>Confirm Registration</h2>
 
 		<div>
-			<label for="email">Email</label>
+			<label for="email">Email (username alias)</label>
 			<input type="email" placeholder="Email" name="email">
 		</div>
 
@@ -105,6 +104,28 @@
 		</div>
 	</form>
 
+	<form name="authenticateUserForm">
+		<h2>Authenticate User</h2>
+
+		<div>
+			<label for="email">Email (username alias)</label>
+			<input type="email" placeholder="Email" name="email">
+		</div>
+
+		<div>
+			<label for="code">Password</label>
+			<input type="password" placeholder="Password" name="password">
+		</div>
+
+		<div class="submit">
+			<input type="submit" value="Login">
+		</div>
+
+		<div class="messages">
+			<div class="errors"></div>
+			<div class="success"></div>
+		</div>
+	</form>
 
 	<script src="index.js"></script>
 </body>
