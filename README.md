@@ -2,7 +2,7 @@
 
 A simple starter project for using AWS-Cognito SDK in the web browser.
 
-[Try the Demo](https://f1lt3r.github.io/aws-cognito-web-starter/)
+[Try the Demo](https://f1lt3r.github.io/aws-cognito-web-starter/index.html)
 
 ## About
 
@@ -28,7 +28,7 @@ npm install
 
 ### Serve Web Page (Optional)
 
-Alternative: [Try the Demo](https://f1lt3r.github.io/aws-cognito-web-starter/)
+Alternative: [Try the Demo](https://f1lt3r.github.io/aws-cognito-web-starter/index.html)
 
 ```
 npm install serve -g
