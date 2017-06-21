@@ -21,14 +21,22 @@ form > div > label {
 	width: 100px;
 }
 
-input[type="submit"] {
-	float: right;
-	font-size: 16px;
+.submit {
+	text-align: right;
 }
 
 .errors {
-	clear: both;
-	display: block;
 	color: red;
-	width: 200px;
+	width: 100%;
+}
+
+.success {
+	color: green;
+	width: 100%;
+}
+
+.messages {
+	width: 240px;
+	font-size: 12px;
+	overflow: scroll;
 }
