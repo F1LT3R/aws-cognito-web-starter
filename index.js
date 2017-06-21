@@ -215,8 +215,11 @@ const authenticateUser = event =>  {
 		userPoolWarning()
 	}
 
-	const email = authenticateUserForm['email'].value
-	const password = authenticateUserForm['password'].value
+	const form = authenticateUserForm
+
+	const email = form['email'].value
+	const password = form['password'].value
+
 	const identityPoolId = configForm['UserPoolId'].value
 	const clientId = configForm['ClientId'].value
 
@@ -250,10 +253,8 @@ const authenticateUser = event =>  {
 		.CognitoIdentityServiceProvider
 		.CognitoUser(userData)
 
-    const errors = confirmRegistrationForm
-    	.getElementsByClassName('errors')[0]
-    const success =confirmRegistrationForm
-    	.getElementsByClassName('success')[0]
+    const errors = form.getElementsByClassName('errors')[0]
+    const success = form.getElementsByClassName('success')[0]
 
     cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: result => {

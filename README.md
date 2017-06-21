@@ -2,6 +2,8 @@
 
 A simple starter project for using AWS-Cognito SDK in the web browser.
 
+[Try the Demo](https://f1lt3r.github.io/aws-cognito-web-starter/)
+
 ## About
 
 This code takes the example code from the [AWS Cognito JavaScript SDK](https://github.com/aws/amazon-cognito-identity-js), and implements it in the most simple way I know how: _an HTML page with 1 JavaScript file_.
