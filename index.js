@@ -6,9 +6,12 @@ const userAttribute = AWSCognito
 	.CognitoIdentityServiceProvider
 	.CognitoUserAttribute
 
-// User Pool Management
+// Cross-Form Interfaces
 
 let userPool
+let cognitoUser
+
+// User Pool Management
 
 if (sessionStorage.UserPoolId) {
 	configForm['UserPoolId'].value = sessionStorage.UserPoolId
@@ -176,14 +179,16 @@ const confirmRegistration = event => {
 	console.log(email)
 	console.log(code)
 
-	const userData = {
-        Username : email,
-        Pool: userPool
-    }
+    if (!cognitoUser) {
+		const userData = {
+	        Username : email,
+	        Pool: userPool
+	    }
 
-    const cognitoUser = new AWSCognito
-    	.CognitoIdentityServiceProvider
-    	.CognitoUser(userData)
+		cognitoUser = new AWSCognito
+			.CognitoIdentityServiceProvider
+			.CognitoUser(userData)
+    }
 
     const errors = confirmRegistrationForm
     	.getElementsByClassName('errors')[0]
@@ -235,23 +240,16 @@ const authenticateUser = event =>  {
 		.CognitoIdentityServiceProvider
 		.AuthenticationDetails(authenticationData)
 
-	const poolData = {
-        UserPoolId: identityPoolId,
-        ClientId: clientId
+    if (!cognitoUser) {
+		const userData = {
+	        Username : email,
+	        Pool: userPool
+	    }
+
+		cognitoUser = new AWSCognito
+			.CognitoIdentityServiceProvider
+			.CognitoUser(userData)
     }
-
-    const userPool = new AWSCognito
-    	.CognitoIdentityServiceProvider
-    	.CognitoUserPool(poolData)
-
-    const userData = {
-        Username: email,
-        Pool: userPool
-    }
-
-	const cognitoUser = new AWSCognito
-		.CognitoIdentityServiceProvider
-		.CognitoUser(userData)
 
     const errors = form.getElementsByClassName('errors')[0]
     const success = form.getElementsByClassName('success')[0]
@@ -282,3 +280,36 @@ const authenticateUser = event =>  {
 }
 
 authenticateUserForm.onsubmit = authenticateUser
+
+// Get user attributes
+
+const getUserAttributes = event => {
+	event.preventDefault()
+
+	if (!userPoolIsConfigured()) {
+		userPoolWarning()
+	}
+    if (!cognitoUser) {
+    	alert('You need to Login or Register first!')
+    }
+
+    const form = getUserAttributesForm
+    const errors = form.getElementsByClassName('errors')[0]
+    const success = form.getElementsByClassName('success')[0]
+
+    cognitoUser.getUserAttributes((err, result) => {
+        if (err) {
+            errors.innerHTML = err
+            return
+        }
+
+        let html = ''
+        for (i = 0; i < result.length; i++) {
+        	html += 'attribute:' + result[i].getName() + ', value: ' + result[i].getValue()
+        }
+
+        success.innerHTML = result
+    });
+}
+
+getUserAttributesForm.onsubmit = getUserAttributes
