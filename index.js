@@ -13,38 +13,53 @@ let cognitoUser
 
 // User Pool Management
 
-if (sessionStorage.UserPoolId) {
-	configForm['UserPoolId'].value = sessionStorage.UserPoolId
-}
-
-if (sessionStorage.ClientId) {
-	configForm['ClientId'].value = sessionStorage.ClientId
-}
-
-const setUserPool = () => {
-	const UserPoolId = configForm['UserPoolId'].value
-	const ClientId = configForm['ClientId'].value
+const setUserPool = poolData => {
+	const {UserPoolId, ClientId} = poolData
 
 	sessionStorage.UserPoolId = UserPoolId
 	sessionStorage.ClientId = ClientId
+
+	configForm.UserPoolId.value = UserPoolId
+	configForm.ClientId.value = ClientId
+
+	try {
+		userPool = new AWSCognito
+			.CognitoIdentityServiceProvider
+			.CognitoUserPool(poolData)
+	} catch (err) {
+		console.error(err)
+		return false
+	}
+
+	return true
+}
+
+const restoreUserPool = () => {
+	if (sessionStorage.UserPoolId) {
+		configForm['UserPoolId'].value = sessionStorage.UserPoolId
+	}
+
+	if (sessionStorage.ClientId) {
+		configForm['ClientId'].value = sessionStorage.ClientId
+	}
+
+	if (!configForm['UserPoolId'].value ||
+		!configForm['ClientId'].value) {
+		return false
+	}
+
+	const UserPoolId = configForm.UserPoolId.value
+	const ClientId = configForm.ClientId.value
 
 	const poolData = {
 		UserPoolId,
 		ClientId
 	}
 
-	userPool = new AWSCognito
-		.CognitoIdentityServiceProvider
-		.CognitoUserPool(poolData)
-
-	if (userPool) {
-		return true
-	}
-
-	return false
+	return setUserPool(poolData)
 }
 
-setUserPool()
+restoreUserPool()
 
 const setupUserPool = () => {
 	if (configForm['UserPoolId'].value &&
@@ -82,9 +97,19 @@ const userPoolWarning = () => {
 
 const configure = event => {
 	event.preventDefault()
-	sessionStorage.UserPoolId = configForm['UserPoolId'].value
-	sessionStorage.ClientId = configForm['ClientId'].value
-	const configured = setUserPool()
+
+	const UserPoolId = configForm['UserPoolId'].value
+	const ClientId = configForm['ClientId'].value
+
+	sessionStorage.UserPoolId = UserPoolId
+	sessionStorage.ClientId = ClientId
+
+	const poolData = {
+		UserPoolId,
+		ClientId
+	}
+
+	const configured = setUserPool(poolData)
 
 	if (configured) {
 		alert('UserPool configured')
@@ -92,6 +117,15 @@ const configure = event => {
 }
 
 configForm.onsubmit = configure
+
+clearButton.addEventListener('click', event => {
+	event.preventDefault()
+	configForm['UserPoolId'].value = ''
+	configForm['ClientId'].value = ''
+	sessionStorage.ClientId = ''
+	sessionStorage.UserPoolId = ''
+	return false
+})
 
 // Normal User Flow Forms
 
