@@ -16,138 +16,142 @@
 <body>
 	<h1>AWS Cognito Web Starter</h1>
 
-	<form name="configForm">
-		<h2>Configure</h2>
+	<div class="container">
 
-		<div>
-			<label for="UserPoolId">UserPoolId</label>
-			<input type="text" placeholder="UserPoolId" name="UserPoolId">
-		</div>
+		<form name="configForm">
+			<h2>Configure</h2>
 
-		<div>
-			<label for="ClientId">ClientId</label>
-			<input type="text" placeholder="ClientId" name="ClientId">
-		</div>
+			<div>
+				<label for="UserPoolId">UserPoolId</label>
+				<input type="text" placeholder="UserPoolId" name="UserPoolId">
+			</div>
 
-		<div>
-			<button id="clearButton">Clear</button>
-			<input type="submit" value="Configure">
-		</div>
-	</form>
+			<div>
+				<label for="ClientId">ClientId</label>
+				<input type="text" placeholder="ClientId" name="ClientId">
+			</div>
 
-	<form name="signupForm">
-		<h2>Sign Up</h2>
+			<div>
+				<button id="clearButton">Clear</button>
+				<input type="submit" value="Configure">
+			</div>
+		</form>
 
-		<div>
-			<label for="email">Email (username alias)</label>
-			<input type="email" placeholder="Email" name="email">
-		</div>
+		<form name="signupForm">
+			<h2>Sign Up</h2>
 
-		<div>
-			<label for="name">Name</label>
-			<input type="text" placeholder="Name" name="name"
-				value="John Smith">
-		</div>
+			<div>
+				<label for="email">Email (username alias)</label>
+				<input type="email" placeholder="Email" name="email">
+			</div>
 
-		<div>
-			<label for="password">Password</label>
-			<input type="password" placeholder="Password" name="password"
-				value="Testing123!"">
-		</div>
+			<div>
+				<label for="name">Name</label>
+				<input type="text" placeholder="Name" name="name"
+					value="John Smith">
+			</div>
 
-		<div>
-			<label for="phone_number">Phone Number</label>
-			<input type="tel" placeholder="Phone Number" name="phone_number"
-				value="+16171234567">
-		</div>
+			<div>
+				<label for="password">Password</label>
+				<input type="password" placeholder="Password" name="password"
+					value="Testing123!"">
+			</div>
 
-		<div>
-			<label for="gender" class="label">Gender</label>
-			<group>
-				<input type="radio" name="gender" value="male"
-					checked>
-				<label for="male">Male</label>
-				<input type="radio" name="gender" value="female">
-				<label for="female">Female</label>
-			</group>
-		</div>
+			<div>
+				<label for="phone_number">Phone Number</label>
+				<input type="tel" placeholder="Phone Number" name="phone_number"
+					value="+16171234567">
+			</div>
 
-		<div>
-			<label for="birthdate">Birth Date</label>
-			<input type="date" name="birthdate" placeholder="Birth Date"
-				value="1972-06-08">
-		</div>
+			<div>
+				<label for="gender" class="label">Gender</label>
+				<group>
+					<input type="radio" name="gender" value="male"
+						checked>
+					<label for="male">Male</label>
+					<input type="radio" name="gender" value="female">
+					<label for="female">Female</label>
+				</group>
+			</div>
 
-		<div class="submit">
-			<input type="submit" value="Sign Up">
-		</div>
+			<div>
+				<label for="birthdate">Birth Date</label>
+				<input type="date" name="birthdate" placeholder="Birth Date"
+					value="1972-06-08">
+			</div>
 
-		<div class="messages">
-			<div class="errors"></div>
-			<div class="success"></div>
-		</div>
-	</form>
+			<div class="submit">
+				<input type="submit" value="Sign Up">
+			</div>
 
-	<form name="confirmRegistrationForm">
-		<h2>Confirm Registration</h2>
+			<div class="messages">
+				<div class="errors"></div>
+				<div class="success"></div>
+			</div>
+		</form>
 
-		<div>
-			<label for="email">Email (username alias)</label>
-			<input type="email" placeholder="Email" name="email">
-		</div>
+		<form name="confirmRegistrationForm">
+			<h2>Confirm Registration</h2>
 
-		<div>
-			<label for="code">Confirm Code</label>
-			<input type="text" placeholder="Confirm Code" name="code">
-		</div>
+			<div>
+				<label for="email">Email (username alias)</label>
+				<input type="email" placeholder="Email" name="email">
+			</div>
 
-		<div class="submit">
-			<input type="submit" value="Confirm">
-		</div>
+			<div>
+				<label for="code">Confirm Code</label>
+				<input type="text" placeholder="Confirm Code" name="code">
+			</div>
 
-		<div class="messages">
-			<div class="errors"></div>
-			<div class="success"></div>
-		</div>
-	</form>
+			<div class="submit">
+				<input type="submit" value="Confirm">
+			</div>
 
-	<form name="authenticateUserForm">
-		<h2>Authenticate User</h2>
+			<div class="messages">
+				<div class="errors"></div>
+				<div class="success"></div>
+			</div>
+		</form>
 
-		<div>
-			<label for="email">Email (username alias)</label>
-			<input type="email" placeholder="Email" name="email">
-		</div>
+		<form name="authenticateUserForm">
+			<h2>Authenticate User</h2>
 
-		<div>
-			<label for="code">Password</label>
-			<input type="password" placeholder="Password" name="password">
-		</div>
+			<div>
+				<label for="email">Email (username alias)</label>
+				<input type="email" placeholder="Email" name="email">
+			</div>
 
-		<div class="submit">
-			<input type="submit" value="Login">
-		</div>
+			<div>
+				<label for="code">Password</label>
+				<input type="password" placeholder="Password" name="password">
+			</div>
 
-		<div class="messages">
-			<div class="errors"></div>
-			<div class="success"></div>
-		</div>
-	</form>
+			<div class="submit">
+				<input type="submit" value="Login">
+			</div>
 
-	<form name="getUserAttributesForm">
-		<h2>Get User Attributes</h2>
+			<div class="messages">
+				<div class="errors"></div>
+				<div class="success"></div>
+			</div>
+		</form>
 
-		<p>Get the attributes for a logged in user.</p>
+		<form name="getUserAttributesForm">
+			<h2>Get User Attributes</h2>
 
-		<div class="submit">
-			<input type="submit" value="Get attributes">
-		</div>
+			<p>Get the attributes for a logged in user.</p>
 
-		<div class="messages">
-			<div class="errors"></div>
-			<div class="success"></div>
-		</div>
-	</form>
+			<div class="submit">
+				<input type="submit" value="Get attributes">
+			</div>
+
+			<div class="messages">
+				<div class="errors"></div>
+				<div class="success"></div>
+			</div>
+		</form>
+
+	</div>
 
 	<script src="index.js"></script>
 </body>
